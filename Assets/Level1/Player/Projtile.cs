@@ -26,6 +26,9 @@ private void OnTriggerEnter2D(Collider2D collision){
         hit = true;
         boxCollider.enabled = false;
         anim.SetTrigger("Explode");
+
+        if (collision.tag == "Enemy")
+            collision.GetComponent<Health>().TakeDamage(1);
      }
 
      public void SetDirection(float _direction){

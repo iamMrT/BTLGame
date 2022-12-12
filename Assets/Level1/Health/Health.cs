@@ -11,11 +11,18 @@ public class Health : MonoBehaviour
     private Animator anim;
     private bool dead;
 
+    [Header("iFrames")]
+    [SerializeField] private float iFramesDuration;
+    [SerializeField] private int numberOfFlashes;
+    private SpriteRenderer spriteRend;
+
+    private bool invulnerable;
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
-        // spriteRend = GetComponent<SpriteRenderer>();
+        spriteRend = GetComponent<SpriteRenderer>();
     }
     public void TakeDamage(float _damage)
     {
@@ -30,9 +37,27 @@ public class Health : MonoBehaviour
             if (!dead)
             {
                 anim.SetTrigger("die");
-                GetComponent<model>().enabled = false;
+
+                //player
+                if(GetComponent<model>() != null)
+                {
+                    GetComponent<model>().enabled = false;
+                    SceneManager.LoadScene("Lose");
+                }
+
+                //enemy
+                if(GetComponentInParent<EnemyPatrol>() != null)
+                    GetComponentInParent<EnemyPatrol>().enabled = false;
+                
+                if(GetComponent<Chamleon>() != null)
+                {
+                    GetComponent<Chamleon>().enabled = false;
+                    anim.SetTrigger("ChamleonDie");
+                }
+
+
                 dead = true;
-                SceneManager.LoadScene("Lose");
+                //SceneManager.LoadScene("Lose");
             }
 
         }
@@ -52,5 +77,23 @@ public class Health : MonoBehaviour
         }
 
     }
+    private IEnumerator Invunerability()
+    {
+        invulnerable = true;
+        Physics2D.IgnoreLayerCollision(10, 11, true);
+        for (int i = 0; i < numberOfFlashes; i++)
+        {
+            spriteRend.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
+            spriteRend.color = Color.white;
+            yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
+        }
+        Physics2D.IgnoreLayerCollision(10, 11, false);
+        invulnerable = false;
+    }
+    /*private void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }*/
 
 }
