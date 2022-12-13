@@ -1,23 +1,34 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chamleon : MonoBehaviour
+public class RangedEnemy : MonoBehaviour
 {
+    [Header("Attack Parameters")]
     [SerializeField] private float attrackCooldown;
     [SerializeField] public float range;
-    [SerializeField] private float colliderDistance;
     [SerializeField] private int damage;
+
+    [Header("Ranged Attack")]
+    [SerializeField] private Transform firepoint;
+    [SerializeField] private GameObject[] fireballs;
+
+    [Header("Collider Parameters")]
+    [SerializeField] private float colliderDistance;
     [SerializeField] private BoxCollider2D boxCollider;
+
+    [Header("Player Layer")]
     [SerializeField] private LayerMask playerPlayer;
     private float cooldownTimer = Mathf.Infinity;
 
+    //References
     private Animator anim;
-    // private Health playeHealth;
-    // Update is called once per frame
+    private EnemyPatrol enemyPatrol;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     private void Update()
@@ -29,9 +40,28 @@ public class Chamleon : MonoBehaviour
             if (cooldownTimer >= attrackCooldown)
             {
                 cooldownTimer = 0;
-                anim.SetTrigger("ChamleonAttrack");
+                anim.SetTrigger("ChamleonRanged");
             }
         }
+
+        if (enemyPatrol != null)
+            enemyPatrol.enabled = !PlayerInSight();
+    }
+    private void RangedAttack()
+    {
+        //SoundManager.instance.PlaySound(fireballSound);
+        cooldownTimer = 0;
+        fireballs[FindFireball()].transform.position = firepoint.position;
+        fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
+    }
+    private int FindFireball()
+    {
+        for (int i = 0; i < fireballs.Length; i++)
+        {
+            if (!fireballs[i].activeInHierarchy)
+                return i;
+        }
+        return 0;
     }
 
     private bool PlayerInSight()
@@ -50,3 +80,4 @@ public class Chamleon : MonoBehaviour
         new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 }
+*/
