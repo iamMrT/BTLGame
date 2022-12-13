@@ -34,16 +34,22 @@ public class Health : MonoBehaviour
         {
             // hurt
             anim.SetTrigger("hurt");
+            anim.SetTrigger("ChamleonHurt");
             anim.SetTrigger("angryHurt");
+            anim.SetTrigger("bunnyHurt");
+            anim.SetTrigger("checkenHurt");
+            anim.SetTrigger("mushHurt");
+            anim.SetTrigger("rinoHurt");
+            anim.SetTrigger("radishHurt");
+
+
             //anim.SetTrigger("ChamleonHurt");
         }
         else
         {
             if (!dead)
             {
-                /*anim.SetTrigger("angryDie");
-                anim.SetTrigger("ChamleonDie");*/
-                anim.SetTrigger("angryDie");
+                
                 if (GetComponent<model>() != null)
                 {
                     GetComponent<model>().enabled = false;
@@ -56,6 +62,12 @@ public class Health : MonoBehaviour
                         component.enabled = false;
                     
                     anim.SetTrigger("ChamleonDie");
+                    anim.SetTrigger("angryDie");
+                    anim.SetTrigger("bunnyDie");
+                    anim.SetTrigger("chickenDie");
+                    anim.SetTrigger("mushDie");
+                    anim.SetTrigger("rinoDie");
+                    anim.SetTrigger("radishDie");
                 }
 
                 dead = true;
