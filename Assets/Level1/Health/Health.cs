@@ -16,7 +16,10 @@ public class Health : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
     private SpriteRenderer spriteRend;
 
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
     private bool invulnerable;
+
 
     private void Awake()
     {
@@ -31,30 +34,24 @@ public class Health : MonoBehaviour
         {
             // hurt
             anim.SetTrigger("hurt");
+            //anim.SetTrigger("ChamleonHurt");
         }
         else
         {
             if (!dead)
             {
-                anim.SetTrigger("die");
-
-                //player
-                if(GetComponent<model>() != null)
+                anim.SetTrigger("ChamleonDie");
+                if (GetComponent<model>() != null)
                 {
                     GetComponent<model>().enabled = false;
                     SceneManager.LoadScene("Lose");
-                }
-
-                //enemy
-                if(GetComponentInParent<EnemyPatrol>() != null)
-                    GetComponentInParent<EnemyPatrol>().enabled = false;
-                
-                if(GetComponent<Chamleon>() != null)
+                } 
+                else
                 {
-                    GetComponent<Chamleon>().enabled = false;
-                    anim.SetTrigger("ChamleonDie");
+                    //Deactivate all attacked components classes
+                    foreach (Behaviour component in components)
+                        component.enabled = false;
                 }
-
 
                 dead = true;
                 //SceneManager.LoadScene("Lose");
@@ -91,9 +88,10 @@ public class Health : MonoBehaviour
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
-    /*private void Deactivate()
+
+    private void Deactivate()
     {
         gameObject.SetActive(false);
-    }*/
+    }
 
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4404928008454556419}
   - component: {fileID: 4404928008454556416}
   - component: {fileID: 4404928008454556417}
+  - component: {fileID: 9046784428637013717}
   m_Layer: 10
   m_Name: ChamleonEnemy
   m_TagString: Enemy
@@ -169,3 +170,18 @@ MonoBehaviour:
   startingHealth: 3
   iFramesDuration: 0
   numberOfFlashes: 0
+  components:
+  - {fileID: 4404928008454556416}
+--- !u!114 &9046784428637013717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404928008454556422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b35eac2deebec47b035e7de730b43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
