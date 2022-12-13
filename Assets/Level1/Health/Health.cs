@@ -34,13 +34,16 @@ public class Health : MonoBehaviour
         {
             // hurt
             anim.SetTrigger("hurt");
+            anim.SetTrigger("angryHurt");
             //anim.SetTrigger("ChamleonHurt");
         }
         else
         {
             if (!dead)
             {
-                anim.SetTrigger("ChamleonDie");
+                /*anim.SetTrigger("angryDie");
+                anim.SetTrigger("ChamleonDie");*/
+                anim.SetTrigger("angryDie");
                 if (GetComponent<model>() != null)
                 {
                     GetComponent<model>().enabled = false;
@@ -51,6 +54,8 @@ public class Health : MonoBehaviour
                     //Deactivate all attacked components classes
                     foreach (Behaviour component in components)
                         component.enabled = false;
+                    
+                    anim.SetTrigger("ChamleonDie");
                 }
 
                 dead = true;
