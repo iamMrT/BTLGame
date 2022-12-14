@@ -148,3 +148,4 @@ MonoBehaviour:
   damage: 1
   movementDistance: 3
   speed: 5
+  HurtSound: {fileID: 8300000, guid: 36c524b54614a7144af67166db189e76, type: 3}
