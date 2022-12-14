@@ -512,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: 0
   model: {fileID: 2028314807}
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 2028314818}
 --- !u!4 &206090207
 Transform:
   m_ObjectHideFlags: 0
@@ -9215,6 +9215,11 @@ MonoBehaviour:
 --- !u!4 &2028314812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1596705041121282645, guid: bdb387d685542ed45883bec53e75e67a, type: 3}
+  m_PrefabInstance: {fileID: 375142109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2028314818 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1764289853558449976, guid: bdb387d685542ed45883bec53e75e67a, type: 3}
   m_PrefabInstance: {fileID: 375142109}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2038057583
