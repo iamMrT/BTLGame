@@ -6,6 +6,9 @@ public class model : MonoBehaviour
 {
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
+    [SerializeField] private AudioSource itemSound;
+
     private Animator anim;
     public Rigidbody2D body;
     private BoxCollider2D boxCollider;
@@ -60,6 +63,8 @@ public class model : MonoBehaviour
     public void IncrementScore(){
         m_score++;
         m_ui.SetScoreText("Score: "+ m_score);
+         itemSound.Play();
+
     }
 
 }
