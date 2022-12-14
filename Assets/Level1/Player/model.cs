@@ -15,10 +15,16 @@ public class model : MonoBehaviour
     public float wallJumpCooldown;
     public bool grounded;
     private float horizontalInput;
+ int m_score;
+    UiController m_ui;
 
 
     void Awake()
-    {
+    {    
+      m_ui = FindObjectOfType<UiController>();
+
+       m_ui.SetScoreText("Score: "+ m_score);
+
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         body = GetComponent<Rigidbody2D>();
@@ -43,5 +49,17 @@ public class model : MonoBehaviour
 // public bool  canAttack() {
 //         return  View.GetComponent<View>().move == 0 && model.GetComponent<model>().isGrounded() && !model.GetComponent<model>().onWall(); 
 //     }
+
+ public void SetScoreText(int value){
+        m_score =  value;
+    }
+    public int GetScore(){
+        return m_score;
+    }
+
+    public void IncrementScore(){
+        m_score++;
+        m_ui.SetScoreText("Score: "+ m_score);
+    }
 
 }
