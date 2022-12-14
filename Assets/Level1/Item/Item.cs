@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+
     model m_model;
     private void OnCollisionEnter2D(Collision2D col) {
         if(col.gameObject.CompareTag("Player")){
+
             m_model.IncrementScore();
-             Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
     

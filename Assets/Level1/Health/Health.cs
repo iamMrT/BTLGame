@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
 
     [Header("Sound")]
     [SerializeField] private AudioSource healSound;
+    [SerializeField] private AudioSource hurtSound;
     [SerializeField] private AudioSource deathSound;
 
     private void Awake()
@@ -35,7 +36,8 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
         if (currentHealth > 0)
         {
-
+            hurtSound.Play();
+            
             // hurt
             anim.SetTrigger("hurt");
             anim.SetTrigger("ChamleonHurt");
