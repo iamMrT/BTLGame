@@ -8,7 +8,11 @@ public class Enemy_Slideway : MonoBehaviour
 
     [SerializeField] private float damage;
     [SerializeField] private float movementDistance;
-     [SerializeField] private float speed;
+    [SerializeField] private float speed;
+    
+    [SerializeField] private AudioSource hurtSound;
+
+
      private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
@@ -20,6 +24,8 @@ public class Enemy_Slideway : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision) {
     if(collision.tag == "Player"){
+      
+      hurtSound.Play();
       collision.GetComponent<Health>().TakeDamage(damage);
         }
     }

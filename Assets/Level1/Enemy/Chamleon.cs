@@ -15,6 +15,8 @@ public class Chamleon : MonoBehaviour
 
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerPlayer;
+    [SerializeField] private AudioSource chamleonAttackSound;
+    
     private float cooldownTimer = Mathf.Infinity;
 
     //References
@@ -48,6 +50,7 @@ public class Chamleon : MonoBehaviour
 
     private bool PlayerInSight()
     {
+
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
         new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
         0, Vector2.left, 0, playerPlayer);
@@ -67,7 +70,12 @@ public class Chamleon : MonoBehaviour
     private void DamagePlayer()
     {
         // if player still in range damage him
-        if (PlayerInSight())
+        if (PlayerInSight()){
+
+            
+
             playerHealth.TakeDamage(damage);
+        }
+            
     }
 }

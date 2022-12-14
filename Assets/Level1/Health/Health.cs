@@ -20,6 +20,9 @@ public class Health : MonoBehaviour
     [SerializeField] private Behaviour[] components;
     private bool invulnerable;
 
+    [Header("Sound")]
+    [SerializeField] private AudioSource healSound;
+    [SerializeField] private AudioSource deathSound;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
         if (currentHealth > 0)
         {
+            
             // hurt
             anim.SetTrigger("hurt");
             anim.SetTrigger("angryHurt");
@@ -60,6 +64,8 @@ public class Health : MonoBehaviour
 
                 dead = true;
                 //SceneManager.LoadScene("Lose");
+                deathSound.Play();
+
             }
 
         }
@@ -67,6 +73,8 @@ public class Health : MonoBehaviour
 
     public void AddHealth(float _value)
     {
+        healSound.Play();
+
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
     }
 

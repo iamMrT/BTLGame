@@ -15,6 +15,8 @@ public class mvcControll : MonoBehaviour
     public GameObject model;
     private GameObject View;
 
+    [SerializeField] private AudioSource jumpSound;
+
 
      void Update()
     {
@@ -58,6 +60,7 @@ public class mvcControll : MonoBehaviour
 
      public void moveUp () {
         if( model.GetComponent<model>().wallJumpCooldown < 0.2f) {
+            jumpSound.Play();
             model.GetComponent<model>().transform.Translate(Vector2.up * model.GetComponent<model>().jump * Time.deltaTime);
 
         // wall logic
