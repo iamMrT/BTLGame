@@ -36,7 +36,7 @@ public class View : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0))
         {
-  
+            
             m_attack.CanAttack();
         }
         else if (jump < 0)
